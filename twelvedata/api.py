@@ -20,5 +20,8 @@ class Api:
 
     def get(self, endpoint, index_name):
         url = self._build_endpoint_url(endpoint)
-        response = requests.get(url, params={"symbol": index_name})
+        response = requests.get(url, params={
+            'symbol': index_name,
+            'apikey': self._api_key,
+        })
         return response
