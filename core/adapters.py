@@ -16,11 +16,17 @@ class AbstractAdapter(metaclass=ABCMeta):
 
 
 class TwelveAdapter(AbstractAdapter):
+
+    ENDPOINT_TIME_SERIES = 'time_series'
+
     def __init__(self, api: Api):
         self._api = api
 
     def get_index_recent_price(self, index):
-        pass
+        response = self._api.get(self.ENDPOINT_TIME_SERIES, index)
+        json_data = response.json()
+        return [json_data[index]['values'][0]['close'],
+                json_data[index]['values'][0]['datetime']]
 
 
 class BitbayAdapter(AbstractAdapter):  # TODO: do it at home guys!
