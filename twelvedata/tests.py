@@ -26,7 +26,7 @@ class ApiTestCase(TestCase):
         api.get('foo', 'bar')
 
         get_mock.assert_called_with(f"{BASE_URL}/foo",
-                                    params={'symbol': 'bar', 'apikey': self.test_api_key, })
+                                    params={'symbol': 'bar', 'apikey': self.test_api_key, 'interval': '1h'})
 
     @patch('requests.get')
     def test_getting_data(self, get_mock):
@@ -46,7 +46,7 @@ class ApiTestCase(TestCase):
         response = api.get('time_series', 'AAPL')
         get_mock.assert_called_with(
             f"{BASE_URL}/time_series",
-            params={'symbol': 'AAPL', 'apikey': self.test_api_key, },
+            params={'symbol': 'AAPL', 'apikey': self.test_api_key, 'interval': '1h'},
         )
 
         self.assertEqual(200, response.status_code)

@@ -7,7 +7,7 @@ from abc import ABCMeta, abstractmethod
 from twelvedata.api import Api
 
 
-TWELVE_API_KEY = os.environ['TWELVE_API_KEY']
+TWELVE_API_KEY = os.environ.get('TWELVE_API_KEY')
 
 
 class AbstractAdapter(metaclass=ABCMeta):

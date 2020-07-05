@@ -29,7 +29,7 @@ class AdapterTestCase(TestCase):
 
             def get(self, endpoint, index):
                 def json():
-                    return self.fake_data
+                    return self.fake_data[index]
                 response = MockResponse()
                 response.status_code = 200
                 response.json = json

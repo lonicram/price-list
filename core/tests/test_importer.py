@@ -31,14 +31,15 @@ class ImporterTestCase(TestCase):
             test_config,
             indexes_config={
                 'ZZZ': 'FakeSource',
-                'YYY': 'FakeSource',
+                'YYY': 'FakeSourceJPY',
             },
             api_sources_conf={
                 'FakeSource': FakeAdapter,
+                'FakeSourceJPY': FakeAdapter,
             },
             currency_config={
-                'ZZZ': 'USD',
-                'YYY': 'JPY',
+                'FakeSource': 'USD',
+                'FakeSourceJPY': 'JPY',
             }
         )
 
@@ -46,8 +47,8 @@ class ImporterTestCase(TestCase):
 
         self.assertEqual(
             [
+                ('YYY', 1.0, 'JPY', 'FakeSourceJPY'),
                 ('ZZZ', 1.0, 'USD', 'FakeSource'),
-                ('YYY', 1.0, 'JPY', 'FakeSource'),
             ],
             list(indexes_data),
         )
