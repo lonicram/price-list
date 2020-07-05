@@ -1,10 +1,17 @@
+import abc
 import requests
 
 
 BASE_URL = 'http://example.com'
 
 
-class Api:
+class AbstractApi(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def get(self, endpoint: str, index: str) -> requests.Response:
+        pass
+
+
+class Api(AbstractApi):
 
     def __init__(self, api_key: str):
         self._api_key = api_key

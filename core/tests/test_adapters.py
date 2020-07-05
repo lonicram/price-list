@@ -4,6 +4,10 @@ from core.adapters import TwelveAdapter
 from twelvedata.api import Api
 
 
+class MockResponse:
+    pass
+
+
 class AdapterTestCase(TestCase):
 
     def test_adapter_init(self):
@@ -24,7 +28,12 @@ class AdapterTestCase(TestCase):
             }
 
             def get(self, endpoint, index):
-                return self.fake_data[index]
+                def json(body):
+                    return self.fake_data[index]
+                response = MockResponse()
+                response.status_code = 200
+                response.json = json
+                return response
 
         adapter = TwelveAdapter(FakeApi())
 
