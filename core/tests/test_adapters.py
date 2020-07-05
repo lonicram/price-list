@@ -39,6 +39,6 @@ class AdapterTestCase(TestCase):
 
         values = adapter.get_index_recent_price('XYZ')
         self.assertEqual(
-            ['364.22000', '2020-07-02 15:59:00'],
+            ('364.22000', '2020-07-02 15:59:00'),
             values
         )

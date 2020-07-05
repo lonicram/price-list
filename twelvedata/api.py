@@ -2,7 +2,7 @@ import abc
 import requests
 
 
-BASE_URL = 'http://example.com'
+BASE_URL = 'https://api.twelvedata.com/'
 
 
 class AbstractApi(metaclass=abc.ABCMeta):
