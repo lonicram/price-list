@@ -9,7 +9,7 @@ class AdapterTestCase(TestCase):
     def test_adapter_init(self):
         apikey = 'test_api_key'
         api = Api('xyz')
-        adapter = TwelveAdapter(api)
+        TwelveAdapter(api)
 
     def test_adapter_get_index_recent_price(self):
         class FakeApi:
@@ -33,5 +33,3 @@ class AdapterTestCase(TestCase):
             ['364.22000', '2020-07-02 15:59:00'],
             values
         )
-
-
