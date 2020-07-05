@@ -24,7 +24,7 @@ class ImporterTestCase(TestCase):
     def test_importing_prices_from_config(self):
         class FakeAdapter:
             def get_index_recent_price(self, index):
-                return index, 1.0
+                return 1.0, 'datetime'
 
         test_config = ['ZZZ', 'yyy']
         importer = Importer(
@@ -47,8 +47,8 @@ class ImporterTestCase(TestCase):
 
         self.assertEqual(
             [
-                ('YYY', 1.0, 'JPY', 'FakeSourceJPY'),
-                ('ZZZ', 1.0, 'USD', 'FakeSource'),
+                (1.0, 'datetime', 'JPY', 'FakeSourceJPY', 'YYY'),
+                (1.0, 'datetime', 'USD', 'FakeSource', 'ZZZ'),
             ],
             list(indexes_data),
         )
@@ -65,13 +65,3 @@ class ImporterTestCase(TestCase):
             len(list(indexes_data)),
             0,
         )
-
-    def test_importing_single_price(self):
-        pass
-        # importer = Importer()
-        # importer.load_data()
-            # for i in indexes_from_mapper:
-                # importer.load_data_for_index(INDEX, SOURCE)
-                    # twelve_adapter.get_values(index) - get from mapper
-                        # js = api.get_json_from_source(index) -- api.get()
-                    # pricesmodel.object.create(values)

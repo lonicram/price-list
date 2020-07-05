@@ -42,4 +42,4 @@ class Importer:
         for index, adapter in sorted(self._config.items()):
             value, timestamp = adapter().get_index_recent_price(index)
             source = self._indexes_conf[index]
-            yield value, timestamp, self._currency_config[source], source
+            yield value, timestamp, self._currency_config[source], source, index,

@@ -5,14 +5,15 @@ from core.config import *
 
 class BaseModel(models.Model):
     id = models.IntegerField(primary_key=True)
-    created = models.DateTimeField(auto_created=True)
+    created = models.DateTimeField(auto_now_add=True)
+
 
     class Meta:
         abstract = True
 
 
 class Currency(BaseModel):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
 
 class Index(BaseModel):
@@ -24,11 +25,8 @@ class Index(BaseModel):
 
 
 class Source(BaseModel):
-    name = models.CharField(max_length=255, choices=SOURCE_CHOICES)
+    name = models.CharField(max_length=255, choices=SOURCE_CHOICES, unique=True)
     url = models.CharField(max_length=255)
-
-    class Meta:
-        unique_together = ('name', 'url')
 
 
 class Price(BaseModel):
@@ -36,6 +34,7 @@ class Price(BaseModel):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     source = models.ForeignKey(Source, on_delete=models.CASCADE)
     index = models.ForeignKey(Index, on_delete=models.CASCADE)
+    from_timestamp = models.DateTimeField(auto_created=True)
 
 
 class PriceAlert(BaseModel):
