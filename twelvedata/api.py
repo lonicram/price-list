@@ -3,6 +3,7 @@ import requests
 
 
 BASE_URL = 'https://api.twelvedata.com/'
+DEFAULT_INTERVAL = '1h'
 
 
 class AbstractApi(metaclass=abc.ABCMeta):
@@ -25,5 +26,6 @@ class Api(AbstractApi):
         response = requests.get(url, params={
             'symbol': index_name,
             'apikey': self._api_key,
+            'interval': DEFAULT_INTERVAL
         })
         return response

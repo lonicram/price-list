@@ -25,7 +25,7 @@ class TwelveAdapter(AbstractAdapter):
     def get_index_recent_price(self, index):
         response = self._api.get(self.ENDPOINT_TIME_SERIES, index)
         json_data = response.json()
-        return json_data[index]['values'][0]['close'], json_data[index]['values'][0]['datetime']
+        return json_data['values'][0]['close'], json_data['values'][0]['datetime']
 
 
 class BitbayAdapter(AbstractAdapter):  # TODO: do it at home guys!

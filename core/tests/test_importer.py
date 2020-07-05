@@ -1,7 +1,7 @@
 """
 Test importer module
 """
-from unittest import TestCase
+from unittest import TestCase, skip
 
 from core.importer import Importer, TWELVEDATA_SOURCE
 from core.adapters import TwelveAdapter
@@ -52,6 +52,7 @@ class ImporterTestCase(TestCase):
             list(indexes_data),
         )
 
+    @skip('Only to be run manually')
     def test_integration_with_twelvedata(self):
         test_config = ['AAPL']
         importer = Importer(

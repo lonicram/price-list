@@ -41,4 +41,5 @@ class Importer:
     def fetch_indexes_data(self):
         for index, adapter in self._config.items():
             value, timestamp = adapter().get_index_recent_price(index)
-            yield value, timestamp, self._currency_config[index], self._indexes_conf[index]
+            source = self._indexes_conf[index]
+            yield value, timestamp, self._currency_config[source], source
